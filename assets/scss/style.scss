@@ -1,0 +1,339 @@
+/*-------------------------------------
+    Template Name: Codeshaper Task
+    Template URI: https://codeshaper.com/task
+    Description: This is a taks project
+    Author: Md. Ahidul Islam
+    Author URI: https://null.com
+    Version: 1.0
+    Tags: task, coding task, travel
+---------------------------------------*/
+
+/*------------------------------------
+	
+	CSS Index
+	============
+	
+	01. Common CSS
+	02. Header styles
+	03. Flyout Menu styles
+	04. Travel Collection styles	
+
+--------------------------------------*/
+
+/**
+ * Fonts 
+ * Roboto
+ */
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+
+// Partial files
+@import "base/variables";
+@import "base/reset";
+@import "base/mixins";
+@import "base/mediaQuery";
+// @import "base/util";
+
+/************************
+ * Common CSS
+ ***********************/
+
+.container {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 0 15px;
+	width: 100%;
+	display: block;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin: 0 -15px;
+
+	.col {
+		flex: 1;
+		padding: 0 15px;
+	}
+}
+.align-items-center {
+	align-items: center !important;
+}
+
+.col-4 {
+	padding: 0 15px;
+	position: relative;
+	// flex-basis: 33.333%;
+	flex: 1;
+
+	@include respond(tabport) {
+		flex-basis: 100%;
+	}
+}
+
+.order-sm-1 {
+	@include respond(tabport) {
+		order: 1;
+	}
+}
+.order-sm-2 {
+	@include respond(tabport) {
+		order: 2;
+	}
+}
+.order-sm-3 {
+	@include respond(tabport) {
+		order: 3;
+	}
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+.btn {
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 32px;
+	letter-spacing: 1.3px;
+	color: #303030;
+	cursor: pointer;
+
+	&--outline {
+		background: transparent;
+		border: 1px solid #303030;
+		padding: 5px 35px;
+		width: auto;
+		transition: all 300ms ease-in-out;
+
+		&:hover {
+			box-shadow: -2px 4px 3px rgba(#000, 0.5);
+		}
+	}
+}
+
+.card {
+	position: relative;
+	width: 100%;
+	height: auto;
+
+	&-text--center {
+		text-align: center;
+	}
+}
+.card img {
+	width: 100%;
+	display: block;
+}
+
+.tagline {
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 18px;
+	color: #303030;
+}
+
+.heading {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 50px;
+	line-height: 52px;
+	text-align: center;
+	letter-spacing: -1.3px;
+	color: #303030;
+
+	@include respond(tabport) {
+		font-size: 30px;
+		line-height: 32px;
+	}
+}
+
+.sub-heading {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: center;
+	letter-spacing: -0.5px;
+	color: #303030;
+}
+
+/******************************
+ ** Header styles
+ ******************************/
+.header {
+	position: relative;
+	padding: 15px 0;
+
+	.logo {
+		max-width: 272px;
+		display: block;
+
+		@include respond(tabport) {
+			max-width: 170px;
+		}
+	}
+}
+.menu-area {
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+ul.main-nav {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	@include respond(tabport) {
+		display: none;
+	}
+
+	li {
+		display: inline-block;
+
+		a {
+			display: block;
+			text-decoration: none;
+			color: #303030;
+			font-weight: 700;
+			font-size: 14px;
+			line-height: 18px;
+			padding: 25px 10px;
+			text-transform: uppercase;
+		}
+
+		&:last-child {
+			a {
+				padding-right: 0;
+			}
+		}
+	}
+}
+
+.search {
+	color: #303030;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 18px;
+	padding: 25px 10px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+span.mbl-nav-toggler {
+	cursor: pointer;
+	display: none;
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+
+	@include respond(tabport) {
+		display: inline-block;
+	}
+}
+
+/******************************
+ ** Flyout Menu styles
+ ******************************/
+.flyout-canvas {
+	position: fixed;
+	padding: 10px 0;
+	right: -100%;
+	top: 0;
+	height: 100vh;
+	max-width: 260px;
+	width: 100%;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	box-shadow: -2px 0 5px rgba(#000, 0.4);
+	opacity: 0;
+	visibility: hidden;
+	transition: all 300ms ease-in-out;
+
+	@include respond(null, tabport) {
+		display: none;
+	}
+
+	&.show {
+		right: 0;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.flyout__close {
+		cursor: pointer;
+		background: transparent;
+		border: none;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		z-index: 9;
+		width: 30px;
+		height: 30px;
+
+		svg {
+			max-width: 30px;
+		}
+	}
+
+	.copyright-txt {
+		color: #303030;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 18px;
+		padding: 10px 30px;
+	}
+}
+.flyout-nav {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		a {
+			display: block;
+			text-decoration: none;
+			color: #303030;
+			font-weight: 700;
+			font-size: 14px;
+			line-height: 18px;
+			padding: 10px 30px;
+			text-transform: uppercase;
+
+			&:hover {
+				background: #f0f0f0;
+			}
+		}
+	}
+}
+
+/******************************
+ ** Travel Collection styles 
+ ******************************/
+.travel-collections {
+	position: relative;
+	padding-bottom: 100px;
+
+	.row {
+		align-items: center;
+	}
+
+	.card {
+		padding: 50px 30px;
+
+		@include respond(tabland) {
+			padding: 30px 0;
+		}
+		@include respond(phone-sm) {
+			padding: 15px 0;
+		}
+	}
+
+	.loadmore-btn {
+		margin-top: 30px;
+	}
+}
